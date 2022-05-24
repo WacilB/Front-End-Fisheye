@@ -8,13 +8,44 @@
       return fetch(this._url)
         .then(response => response.json())
         .then(response => {
-        
-          return response.photographers
+
+
+            return response.photographers
         })
         .catch(err => {
           throw new Error('La requete api getPhotographer a échoué : ', err)
         })
     }
-  
-}
+     async getPhotographerById (userId) {
+         return fetch(this._url)
+             .then(response => response.json())
+             .then(response => {
+                 return response.photographers.filter(photographer => photographer.id === userId)[0]
+             })
+             .catch(err => {
+                 throw new Error('La requete api getPhotographer a échoué : ', err)
+             })
+     }
+     async getMedia () {
+         return fetch(this._url)
+             .then(response => response.json())
+             .then(response => {
 
+
+                 return response.media
+             })
+             .catch(err => {
+                 throw new Error('La requete api getMedia a échoué : ', err)
+             })
+     }
+     async getMediasByPhotographerId (userId) {
+         return fetch(this._url)
+             .then(response => response.json())
+             .then(response => {
+                 return response.media.filter(media => media.photographerId === userId)
+             })
+             .catch(err => {
+                 throw new Error('La requete api getPhotographer a échoué : ', err)
+             })
+     }
+}
