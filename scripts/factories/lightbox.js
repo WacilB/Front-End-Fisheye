@@ -1,44 +1,45 @@
+// eslint-disable-next-line no-unused-vars
 class LightboxTemplate{
     constructor(media) {
-        this._media =media
-        this.lightBoxContainer =null
-        this.lightBoxContent =null
-        this.lightBoxCloseBtn =null
-        this.lightBoxNextBtn =null
-        this.lightBoxPrevBtn = null
-        this.$media =null
-        this.$mediaTitle =null
+        this._media =media;
+        this.lightBoxContainer =null;
+        this.lightBoxContent =null;
+        this.lightBoxCloseBtn =null;
+        this.lightBoxNextBtn =null;
+        this.lightBoxPrevBtn = null;
+        this.$media =null;
+        this.$mediaTitle =null;
     }
 
     //Getters
 
     get LightBoxContainer(){
-        return this.lightBoxContainer
+        return this.lightBoxContainer;
     }
     get LightBoxContent(){
-        return this.lightBoxContent
+        return this.lightBoxContent;
     }
     get closeBtn(){
-        return this.lightBoxCloseBtn
+        return this.lightBoxCloseBtn;
     }
     get nextBtn(){
-        return this.lightBoxNextBtn
+        return this.lightBoxNextBtn;
     }
     get prevBtn (){
-        return this.lightBoxPrevBtn
+        return this.lightBoxPrevBtn;
     }
     get media (){
-        return this.$media
+        return this.$media;
     }
     get title(){
-        return this.$mediaTitle
+        return this.$mediaTitle;
     }
 
     createLightbox(){
-        const lightBoxTemplate = document.createElement('aside')
-        lightBoxTemplate.setAttribute('aria-label', 'Media plein écran')
-        lightBoxTemplate.setAttribute('tabindex' , 0)
-        lightBoxTemplate.classList.add('lightbox')
+        const lightBoxTemplate = document.createElement("aside");
+        lightBoxTemplate.setAttribute("aria-label", "Media plein écran");
+        lightBoxTemplate.setAttribute("tabindex" , 0);
+        lightBoxTemplate.classList.add("lightbox");
 
         lightBoxTemplate.innerHTML = `
         <button class="lightbox__close" aria-label="Fermer la boite">
@@ -60,68 +61,68 @@ class LightboxTemplate{
             <div class="lightbox__content">
             </div>
         </div>
-        `
+        `;
 
-        this.lightBoxContent = lightBoxTemplate.querySelector('.lightbox__content')
-        this.lightBoxCloseBtn = lightBoxTemplate.querySelector('.lightbox__close')
-        this.lightBoxNextBtn = lightBoxTemplate.querySelector('.lightbox__next')
-        this.lightBoxPrevBtn = lightBoxTemplate.querySelector('.lightbox__prev')
+        this.lightBoxContent = lightBoxTemplate.querySelector(".lightbox__content");
+        this.lightBoxCloseBtn = lightBoxTemplate.querySelector(".lightbox__close");
+        this.lightBoxNextBtn = lightBoxTemplate.querySelector(".lightbox__next");
+        this.lightBoxPrevBtn = lightBoxTemplate.querySelector(".lightbox__prev");
 
-        this.lightBoxContainer = lightBoxTemplate
-        return lightBoxTemplate
+        this.lightBoxContainer = lightBoxTemplate;
+        return lightBoxTemplate;
     }
 
     loadImage(){
-        const image = new Image()
-        image.src = this._media._imagePath
+        const image = new Image();
+        image.src = this._media._imagePath;
 
 
-        const loader = document.createElement('div')
-        loader.classList.add('lightbox__loader')
+        const loader = document.createElement("div");
+        loader.classList.add("lightbox__loader");
 
-        this.lightBoxContent.innerHTML = ``
-        this.lightBoxContent.appendChild(loader)
-        this.$media =image
+        this.lightBoxContent.innerHTML = "";
+        this.lightBoxContent.appendChild(loader);
+        this.$media =image;
 
-        const title = document.createElement('h2')
-        title.id ='picture-title'
-        title.innerHTML= this._media._title
-        this.$mediaTitle = title
+        const title = document.createElement("h2");
+        title.id ="picture-title";
+        title.innerHTML= this._media._title;
+        this.$mediaTitle = title;
 
         image.onload = ()=>{
-            this.lightBoxContent.removeChild(loader)
-            this.lightBoxContent.appendChild(image)
-            this.lightBoxContent.appendChild(title)
-        }
+            this.lightBoxContent.removeChild(loader);
+            this.lightBoxContent.appendChild(image);
+            this.lightBoxContent.appendChild(title);
+        };
 
 
     }
 
     loadVideo(){
-        const video = document.createElement('video')
-        video.src = this._media._videoPath
-        video.autoplay =true
-        this.$media =video
+        const video = document.createElement("video");
+        video.src = this._media._videoPath;
+        video.autoplay =true;
+        this.$media =video;
 
-        const title = document.createElement('h2')
-        title.id ='picture-title'
-        title.innerHTML= this._media._title
-        this.$mediaTitle = title
+        const title = document.createElement("h2");
+        title.id ="picture-title";
+        title.innerHTML= this._media._title;
+        this.$mediaTitle = title;
 
-        this.lightBoxContent.innerHTML = ``
-        this.lightBoxContent.appendChild(video)
-        this.lightBoxContent.appendChild(title)
+        this.lightBoxContent.innerHTML = "";
+        this.lightBoxContent.appendChild(video);
+        this.lightBoxContent.appendChild(title);
 
     }
     loadFactory (media) {
-        this._media = media
+        this._media = media;
         // Definition du template de la lightbox
-        if (this._media.type === 'picture') {
-            this.loadImage()
-        } else if (this._media.type === 'video') {
-            this.loadVideo()
+        if (this._media.type === "picture") {
+            this.loadImage();
+        } else if (this._media.type === "video") {
+            this.loadVideo();
         } else {
-            throw new Error(`Le média avec un type : ${this._media.type} est incompatible`)
+            throw new Error(`Le média avec un type : ${this._media.type} est incompatible`);
         }
     }
 

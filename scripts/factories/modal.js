@@ -1,28 +1,29 @@
+// eslint-disable-next-line no-unused-vars
 class ModalTemplate {
     constructor(photographer) {
-        this._photographer = photographer
-        this._modalSection = null
-        this._validationMessage = null
+        this._photographer = photographer;
+        this._modalSection = null;
+        this._validationMessage = null;
     }
     //getter
     get modalSection(){
-        return this._modalSection
+        return this._modalSection;
     }
     get modalClose(){
-        return this._modalSection.querySelector('[data-dismiss="contact-modal"]')
+        return this._modalSection.querySelector("[data-dismiss=\"contact-modal\"]");
     }
     get modalSubmit(){
-        return this._modalSection.querySelector('button[type="submit"]')
+        return this._modalSection.querySelector("button[type=\"submit\"]");
     }
 
     createModalSection() {
-        this._modalSection = document.createElement("div")
-        this._modalSection.id = 'contact-modal'
-        this._modalSection.style.display ='none'
-        this._modalSection.setAttribute('role', 'dialog')
-        this._modalSection.setAttribute('aria-labelledby', 'contact-modal__title')
-        this._modalSection.setAttribute('aria-hidden', 'true')
-        this._modalSection.setAttribute('tabindex', '-1')
+        this._modalSection = document.createElement("div");
+        this._modalSection.id = "contact-modal";
+        this._modalSection.style.display ="none";
+        this._modalSection.setAttribute("role", "dialog");
+        this._modalSection.setAttribute("aria-labelledby", "contact-modal__title");
+        this._modalSection.setAttribute("aria-hidden", "true");
+        this._modalSection.setAttribute("tabindex", "-1");
         this._modalSection.innerHTML = `
                 <div class="modal" data-stop-propagation>
         <div class="modal-header">
@@ -50,17 +51,8 @@ class ModalTemplate {
         </form>
     </div> 
    
-        `
-        return this._modalSection
-    }
-
-    ValidationMessage(){
-        this._modalSection.innerHTML =`
-        <h2>Merci pour votre message ! <br>
-        ${this._photographer.name} vous répondra dans les plus brefs delais 
-        </h2>
-        `
-        return this._modalSection
+        `;
+        return this._modalSection;
     }
 
 }

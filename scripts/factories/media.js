@@ -1,37 +1,38 @@
 
 
+// eslint-disable-next-line no-unused-vars
 class ListMediaTemplate{
     constructor(photographer) {
-        this._photographer = photographer
-        this._wrapperListCards = null
+        this._photographer = photographer;
+        this._wrapperListCards = null;
     }
 
     createListMedia () {
-        this._wrapperListCards = document.createElement('ul')
-        this._wrapperListCards.classList.add('media-cards-list')
+        this._wrapperListCards = document.createElement("ul");
+        this._wrapperListCards.classList.add("media-cards-list");
 
         this._photographer.portfolio.forEach(media => {
-            const mediaTemplate = new MediaTemplate(this._photographer, media)
-            media.template = mediaTemplate
-            this._wrapperListCards.appendChild(mediaTemplate.createCard('li'))
-        })
+            const mediaTemplate = new MediaTemplate(this._photographer, media);
+            media.template = mediaTemplate;
+            this._wrapperListCards.appendChild(mediaTemplate.createCard("li"));
+        });
 
-        return this._wrapperListCards
+        return this._wrapperListCards;
     }
     refreshListMedia (callback = () => {}) {
-        const parentNode = this._wrapperListCards.parentNode
+        const parentNode = this._wrapperListCards.parentNode;
 
-        parentNode.classList.remove('loaded')
-        parentNode.classList.add('loading')
+        parentNode.classList.remove("loaded");
+        parentNode.classList.add("loading");
 
         const timer = setTimeout(() => {
-            parentNode.removeChild(this._wrapperListCards)
-            parentNode.appendChild(this.createListMedia())
-            parentNode.classList.remove('loading')
-            parentNode.classList.add('loaded')
-            callback()
-            clearTimeout(timer)
-        }, 300)
+            parentNode.removeChild(this._wrapperListCards);
+            parentNode.appendChild(this.createListMedia());
+            parentNode.classList.remove("loading");
+            parentNode.classList.add("loaded");
+            callback();
+            clearTimeout(timer);
+        }, 300);
     }
 
 
@@ -39,20 +40,20 @@ class ListMediaTemplate{
 
 class MediaTemplate{
     constructor(photographer, media) {
-        this._photographer =photographer
-        this._media = media
-        this._mediaCard = null
+        this._photographer =photographer;
+        this._media = media;
+        this._mediaCard = null;
     }
 
     // Getter
 
     get mediaWarper(){
-        return this._mediaCard
+        return this._mediaCard;
     }
 
     createCard(tagName){
-        this._mediaCard = document.createElement(tagName)
-        this._mediaCard.classList.add("media-container")
+        this._mediaCard = document.createElement(tagName);
+        this._mediaCard.classList.add("media-container");
 
         const card= `
         <a href="${this._media.path}" class="media-card__cover" aria-label="${this._media._title}, agrandir l'image">
@@ -67,27 +68,27 @@ class MediaTemplate{
         </div>
         </div>
         </div>
-        `
-        this._mediaCard.innerHTML = card
-        this.likeCounter()
-        this._mediaCard.querySelector(`#like-${this._media.id}-input`).checked = this._media.userLike
+        `;
+        this._mediaCard.innerHTML = card;
+        this.likeCounter();
+        this._mediaCard.querySelector(`#like-${this._media.id}-input`).checked = this._media.userLike;
 
-        return this._mediaCard
+        return this._mediaCard;
     }
     likeCounter() {
-        this._mediaCard.querySelector('input[type="checkbox"]').addEventListener('click', (e) => {
+        this._mediaCard.querySelector("input[type=\"checkbox\"]").addEventListener("click", (e) => {
             if (e.target.checked) {
-                this._media.likes += 1
+                this._media.likes += 1;
             } else {
-                this._media.likes -= 1
+                this._media.likes -= 1;
             }
-            this._mediaCard.querySelector('label.favorite__counter').innerHTML = this._media.likes
-            this._mediaCard.querySelector('input.favorite__input').setAttribute('aria-label', `${this._media.likes} j'aime`)
+            this._mediaCard.querySelector("label.favorite__counter").innerHTML = this._media.likes;
+            this._mediaCard.querySelector("input.favorite__input").setAttribute("aria-label", `${this._media.likes} j'aime`);
 
 
             //rafraichie le Prix dans la modal
-            this._photographer.templatePhotographer.refreshPhotographerContentModal()
+            this._photographer.templatePhotographer.refreshPhotographerContentModal();
 
-        })
+        });
     }
 }

@@ -1,20 +1,21 @@
+// eslint-disable-next-line no-unused-vars
 class PhotographerTemplate {
-constructor(photographer) {
-  this._photographer = photographer
-  this._photographerCard = null
-  this._photographerHeader = null
-    this._photographerModalPrice =null
-    this._buttonModal = null
-}
-    get btnModal () {
-        return this._buttonModal
+    constructor(photographer) {
+        this._photographer = photographer;
+        this._photographerCard = null;
+        this._photographerHeader = null;
+        this._photographerModalPrice =null;
+        this._buttonModal = null;
     }
-createPhotographerCard() {
+    get btnModal () {
+        return this._buttonModal;
+    }
+    createPhotographerCard() {
     //Constantes des éléments HTML
-    this._photographerCard = document.createElement("article");
+        this._photographerCard = document.createElement("article");
 
-    //Afficher les elements dans la balise article
-    const article=`
+        //Afficher les elements dans la balise article
+        const article=`
     <a href="photographer.html?id=${this._photographer.id}" aria-label="${this._photographer.name}">
     <img src="${this._photographer.portrait}" alt="${this._photographer.name}">
     <h2>${this._photographer.name}</h2>
@@ -23,15 +24,15 @@ createPhotographerCard() {
     <h4>${this._photographer.tagline}</h4>
     <p>${this._photographer.price}€/jour</p>
     
-    `
-    this._photographerCard.innerHTML = article
-    return this._photographerCard;
-  }
+    `;
+        this._photographerCard.innerHTML = article;
+        return this._photographerCard;
+    }
 
-  createPhotographerHeader() {
-        this._photographerHeader = document.createElement("div")
-      this._photographerHeader.classList.add("photographe-header")
-      const content =`
+    createPhotographerHeader() {
+        this._photographerHeader = document.createElement("div");
+        this._photographerHeader.classList.add("photographe-header");
+        const content =`
     <div class="photograph-header-infos">
     <h2>${this._photographer.name}</h2> 
     <h4>${this._photographer.city}, ${this._photographer.country}</h4>
@@ -43,19 +44,19 @@ createPhotographerCard() {
     <div class="photograph-header-img">
     <img src="${this._photographer.portrait}" alt="${this._photographer.name}">
     </div>
-    `
-      this._photographerHeader.innerHTML = content
-    this._buttonModal = this._photographerHeader.querySelector('[aria-controls="contact-modal"]')
-    return this._photographerHeader
-  }
+    `;
+        this._photographerHeader.innerHTML = content;
+        this._buttonModal = this._photographerHeader.querySelector("[aria-controls=\"contact-modal\"]");
+        return this._photographerHeader;
+    }
 
-  createPhotographerModalPrice(){
-    this._photographerModalPrice = document.createElement('aside')
-      this._photographerModalPrice.setAttribute('data-hidden-on-modal', '')
-      this._photographerModalPrice.setAttribute('aria-label', `${this._photographer.likes} j'aimes, tarifs: ${this._photographer.price}€ par jour`)
-      this._photographerModalPrice.classList.add('photographer-modal-price')
+    createPhotographerModalPrice(){
+        this._photographerModalPrice = document.createElement("aside");
+        this._photographerModalPrice.setAttribute("data-hidden-on-modal", "");
+        this._photographerModalPrice.setAttribute("aria-label", `${this._photographer.likes} j'aimes, tarifs: ${this._photographer.price}€ par jour`);
+        this._photographerModalPrice.classList.add("photographer-modal-price");
 
-      this._photographerModalPrice.innerHTML= `
+        this._photographerModalPrice.innerHTML= `
        <div class="photographer-modal-price__like" aria-hidden="true">${this._photographer.likes}
        
         </div>
@@ -66,12 +67,12 @@ createPhotographerCard() {
         </svg>
 </div>
       <div class="photographer-modal-price__price" aria-hidden="true">${this._photographer.price}€ / jour</div>
-      `
-      return this._photographerModalPrice
-}
-    refreshPhotographerContentModal(){
-    if (this._photographerModalPrice){
-    this._photographerModalPrice.querySelector(".photographer-modal-price__like").innerHTML =`${this._photographer.likes}`
+      `;
+        return this._photographerModalPrice;
     }
+    refreshPhotographerContentModal(){
+        if (this._photographerModalPrice){
+            this._photographerModalPrice.querySelector(".photographer-modal-price__like").innerHTML =`${this._photographer.likes}`;
+        }
     }
 }

@@ -1,27 +1,28 @@
 
+/*global */
+//  eslint-disable-next-line no-unused-vars
+class FilterSelectTemplate {
+    constructor () {
+        this.$wrapper = null;
+        this._observerNode = null;
+    }
 
- class FilterSelectTemplate {
-  constructor () {
-    this.$wrapper = null
-    this._observerNode = null
-  }
-
-  /**
+    /**
    * GETTERS
    */
-  get filterHtmlElement () {
-    return this.$wrapper
-  }
+    get filterHtmlElement () {
+        return this.$wrapper;
+    }
 
-  get observerNode () {
-    return this._observerNode
-  }
+    get observerNode () {
+        return this._observerNode;
+    }
 
-  createFilter () {
-    this.$wrapper = document.createElement('div')
-    this.$wrapper.classList.add('filter-selector')
+    createFilter () {
+        this.$wrapper = document.createElement("div");
+        this.$wrapper.classList.add("filter-selector");
 
-    const content = `         
+        const content = `         
       <h3 id="filter__title" tabindex="0">Trier par</h3>
       <div class="selector" data-filter-value="popularity">
         <button id="filter__toggle" aria-labelledby="filter__title filter__option1" class="selector__toggle" aria-expanded="false" aria-haspopup="listbox"><span class="material-icons">expand_more</span></button>
@@ -31,9 +32,9 @@
           <li id="filter__option3" role="option" class="selector__item selector__item--3" tabindex="-1" data-filter-option="title" aria-labelledby="filter__title filter__option3">Titre</li>
         </ul>
       </div>
-    `
-    this.$wrapper.innerHTML = content
-    this._observerNode = this.$wrapper.querySelector('.selector')
-    return this.$wrapper
-  }
+    `;
+        this.$wrapper.innerHTML = content;
+        this._observerNode = this.$wrapper.querySelector(".selector");
+        return this.$wrapper;
+    }
 }
