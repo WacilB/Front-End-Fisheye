@@ -132,7 +132,6 @@ class FilterSelect {
 
     /**
 Selection d'une option
-   * @param {HTMLElement} node
    */
     _selectItem (node) {
         this._selectedItem = node;
@@ -162,7 +161,6 @@ Selection d'une option
 
     /**
   les evenement du clavier
-   * @param {KeyboardEvent} e
    */
     _ariaEventListener (e) {
         e.preventDefault();
