@@ -5,7 +5,6 @@ class Modal {
         this._modalContainer = template._modalSection;
         this._closeNode = template.modalClose;
         this._sendButton = template.modalSubmit;
-        this._validationMessage = template.ValidationMessage;
         this._ariaSelector = ariaSelector;
         this._previousFocus = null;
         this._ariaElements = [];
@@ -14,7 +13,6 @@ class Modal {
         // fonctions pour garder le context this
         this._stopPropagation = this._stopPropagation.bind(this);
         this._ariaModal = this._ariaModal.bind(this);
-        this._validationMessage =this._validationMessage.bind(this);
         this._closeModal = this.closeModal.bind(this);
         this._sendEmail = this._sendEmail.bind(this);
     }
